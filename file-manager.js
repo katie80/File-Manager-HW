@@ -14,7 +14,7 @@ var useStdin = function() {
 		} else if (inputSplit[0] == "replace") {
 			replace(inputSplit[1], inputSplit[2], inputSplit[3]);
 		} else if (inputSplit[0] == "remove") {
-			remove(inputSplit[1]);
+			rm(inputSplit[1]);
 		} else if (inputSplit[0] == "grep") {
 			grepFile(inputSplit[1], inputSplit[2]);
 		}
@@ -64,7 +64,7 @@ function replace(fileName, oldWord, newWord) {
 	});
 }
 
-function remove(fileName) {
+function rm(fileName) {
 	fs.readFile(fileName, function(err) {
 		if (err) {
 			return console.log(err);
@@ -79,7 +79,7 @@ function grepFile(fileName, search) {
 		if (err) {
 			return console.log(err);
 		}
-		data = data.toString().split("/n");	//type and content of data: array of strings
+		data = data.toString().split("\n");	//type and content of data: array of strings
 		
 		for (var str of data) {
 			if (str.includes(search)) {
