@@ -13,7 +13,7 @@ var useStdin = function() {
 			createNewFile(inputSplit[1]);
 		} else if (inputSplit[0] == "replace") {
 			replace(inputSplit[1], inputSplit[2], inputSplit[3]);
-		} else if (inputSplit[0] == "remove") {
+		} else if (inputSplit[0] == "rm") {
 			rm(inputSplit[1]);
 		} else if (inputSplit[0] == "grep") {
 			grepFile(inputSplit[1], inputSplit[2]);
@@ -65,11 +65,9 @@ function replace(fileName, oldWord, newWord) {
 }
 
 function rm(fileName) {
-	fs.readFile(fileName, function(err) {
+	fs.unlink(fileName, function(err) {
 		if (err) {
 			return console.log(err);
-		} else {
-			fs.rmdir(fileName);
 		}
 	});
 }
